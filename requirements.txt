@@ -1,0 +1,4 @@
+FastAPI
+requests
+uvicorn
+fastapi[all]
