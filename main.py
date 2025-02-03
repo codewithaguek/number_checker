@@ -15,39 +15,37 @@ app.add_middleware(
 )
 
 
-# method to check if a number is prime
-def is_prime(n):
-	if n < 2:
-		return False
 
-	for i in range(2, n):
-		if n % i == 0:
-			return False
-	return True
+def is_prime(n: int) -> bool:
+    """Check if a number is prime."""
+    if n < 2:
+        return False
+    for i in range(2, int(abs(n)**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
 
-# method to check if a number is perfect or not
-
-def is_perfect(n):
-	sum = 0
-
-	for i in range(1, n):
-		if n%i == 0:
-			sum += i
-	if sum == n:
-		return True
-	else:
-		return False
-
+def is_perfect(n: int) -> bool:
+    """Check if a number is perfect."""
+    if n < 2:
+        return False
+    divisors = [i for i in range(1, abs(n)) if n % i == 0]
+    return sum(divisors) == abs(n)
 
 def is_armstrong(n: int) -> bool:
+    """Check if a number is an Armstrong number."""
+    if n < 0:
+        return False
     digits = [int(d) for d in str(n)]
     length = len(digits)
     return sum(d**length for d in digits) == n
 
 def digit_sum(n: int) -> int:
-    return sum(int(d) for d in str(n))
+    """Calculate the sum of digits of a number."""
+    return sum(int(d) for d in str(abs(n)))
 
 def get_parity(n: int) -> str:
+    """Check if a number is odd or even."""
     return "odd" if n % 2 else "even"
 
 def get_fun_fact(n: int) -> str:
